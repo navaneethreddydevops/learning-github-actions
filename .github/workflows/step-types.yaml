@@ -1,0 +1,25 @@
+name: Step Types
+
+on:
+  workflow_dispatch:
+
+jobs:
+  say-hello-inline-bash:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Say Hello Inline Bash
+        run: echo "Hello from inline bash! script in a Github Actions workflow"
+
+  say-hello-inline-python:
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Say Hello Inline Python
+        run: |
+          python3 -c "print('Hello from inline Python! script in a Github Actions workflow')"
+
+  say-hello-action:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/hello-world-javascript-action@v1
+        with:
+          who-to-greet: "Action from an GitHub Action marketplace! 👋"
