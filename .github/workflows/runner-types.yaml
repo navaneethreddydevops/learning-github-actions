@@ -40,15 +40,3 @@ jobs:
           echo "This job is running on a ${{ runner.os }}-${{ runner.arch }}"
           echo "Runner name: ${{ runner.name }}"
           echo "Container image:   $(grep PRETTY_NAME /etc/os-release)"
-
-  ######################################
-  #  3RD PARTY HOSTED RUNNERS
-  ######################################
-  namespace-ubuntu-vm:
-    name: Namespace Ubuntu VM
-    runs-on: namespace-profile-default
-    steps:
-      - name: Show runner info
-        run: |
-          echo "Hello from ${{ runner.os }}-${{ runner.arch }}"
-          echo "Runner name (type): ${{ runner.name }}"
