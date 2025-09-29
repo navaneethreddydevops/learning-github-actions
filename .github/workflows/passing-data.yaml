@@ -6,8 +6,6 @@ jobs:
   producer:
     runs-on: ubuntu-24.04
 
-    outputs:
-      foo: ${{ steps.generate-foo.outputs.foo }}
     steps:
       - name: Generate and export foo
         id: generate-foo
@@ -24,6 +22,9 @@ jobs:
         run: |
           echo "FOO (set via GITHUB_ENV):   $FOO"
           echo "foo (step output):          ${{ steps.generate-foo.outputs.foo }}"
+
+    outputs:
+      foo: ${{ steps.generate-foo.outputs.foo }}
 
   consumer:
     runs-on: ubuntu-24.04
