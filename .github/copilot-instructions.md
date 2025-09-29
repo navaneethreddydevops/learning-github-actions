@@ -40,9 +40,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Descriptive step name
-        run: |
-          # Clear commands with comments
+      - name: Upload artifacts (use v4+)
+        uses: actions/upload-artifact@v4  # v3 deprecated as of April 2024
+        with:
+          name: artifact-name
+          path: path/to/artifact
+      - name: Download artifacts (use v4+)
+        uses: actions/download-artifact@v4  # v3 deprecated as of April 2024
+        with:
+          name: artifact-name
 ```
 
 ### Key Learning Areas to Cover
@@ -50,7 +56,7 @@ jobs:
 - **Matrix Builds**: Testing across multiple environments/versions
 - **Conditional Logic**: Using `if:` conditions and expressions
 - **Secrets Management**: Safe handling of API keys and credentials
-- **Artifact Handling**: Uploading/downloading build artifacts
+- **Artifact Handling**: Uploading/downloading build artifacts (always use v4+ actions)
 - **Caching**: Optimizing workflow performance with caching strategies
 - **Custom Actions**: Creating reusable actions
 - **Environment Deployments**: Using GitHub environments for staged deployments
@@ -60,6 +66,13 @@ jobs:
 - Test locally: Use `act` tool or GitHub CLI for local testing when possible
 - Validate syntax: Use GitHub's workflow syntax checker
 - Monitor runs: Check Actions tab for execution results and logs
+
+### Action Version Requirements
+- **Artifact Actions**: ALWAYS use `actions/upload-artifact@v4` and `actions/download-artifact@v4`
+  - v3 was deprecated in April 2024 and will cause workflow failures
+  - v4 introduces breaking changes in artifact handling behavior
+- **Checkout Action**: Use `actions/checkout@v4` for latest Git features
+- **Setup Actions**: Use latest versions (`actions/setup-python@v4`, `actions/setup-node@v4`, etc.)
 
 ### Dependencies and Integrations
 - **External Services**: Demonstrate integration with common services (Docker Hub, AWS, etc.)
@@ -79,3 +92,6 @@ When creating new workflows, consider these templates:
 - Add comments explaining GitHub Actions concepts and syntax
 - Create both simple and complex examples of the same concept
 - Include examples of common failures and how to debug them
+- **Version Awareness**: Always use current action versions to avoid deprecation errors
+  - Check GitHub's changelog for deprecation notices
+  - Update workflows when actions are deprecated (e.g., artifact actions v3 → v4)

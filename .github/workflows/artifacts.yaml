@@ -31,4 +31,4 @@ jobs:
 
       - name: Display Artifact Content
         run: |
-          cat sample-artifact/artifact.txt
+          cat artifact.txt
