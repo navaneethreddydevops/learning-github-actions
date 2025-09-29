@@ -15,8 +15,8 @@ on:
       - "src/**"
       - "docs/**"
 
-  schedule:
-    - cron: "0 0 * * 0" # Runs at midnight every Sunday
+  #  schedule:
+  #    - cron: "0 0 * * 0" # Runs at midnight every Sunday
 
   workflow_dispatch:
 jobs:
