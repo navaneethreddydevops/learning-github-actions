@@ -1,0 +1,29 @@
+name: Triggers and Filters
+
+on:
+  push:
+    branches:
+      - example-branch/*
+
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+
+    paths:
+      - "src/**"
+      - "docs/**"
+
+  schedule:
+    - cron: "0 0 * * 0" # Runs at midnight every Sunday
+
+  workflow_dispatch:
+jobs:
+  echo-event:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Dump full event JSON
+        run: |
+          echo "=== $GITHUB_EVENT_NAME payload ==="
+          cat "$GITHUB_EVENT_PATH"
